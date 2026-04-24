@@ -1,0 +1,438 @@
+@font-face {
+  font-family: "myriad";
+  src: url("https://files.catbox.moe/s0igcb.OTF");
+}
+@font-face {
+    font-family:'mkpop';
+    src: url(https://dl.dropbox.com/s/tqk43iocmy15y4m/851MkPOP_100%20%281%29.ttf);
+}
+
+::selection {
+    background: #f6bcde;
+    color: #1d3a5c;
+}
+
+body {
+    background-image: url("https://neocitiesimage.carrd.co/assets/images/image34.jpg");
+    background-attachment: fixed;
+    background-repeat: repeat;
+    overflow: hidden;
+    font-family: "myriad";
+}
+
+p {
+    font-family:'mkpop';
+}
+
+.inner-blue-poster button {
+    z-index: 10;
+    position: absolute;
+    top: 15em;
+    left: 2em;
+    rotate: -2deg;
+    border:none;
+    background:#ece9d8;
+    box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px grey,inset 2px 2px #dfdfdf;
+    border-radius:0;
+    min-width:75px;
+    min-height:23px;
+    padding:0 12px;
+}
+
+.inner-blue-poster button:not(:disabled):hover {
+    background: #d4d0c8;
+    cursor: pointer;
+}
+
+.inner-blue-poster button:not(:disabled).active,.inner-blue-poster button:not(:disabled):active{
+    box-shadow:inset -1px -1px #fff,inset 1px 1px #0a0a0a,inset -2px -2px #dfdfdf,inset 2px 2px grey;
+    background: #d4d0c8;
+}
+
+.inner-blue-poster button.focused, .inner-blue-poster button:focus{
+    outline:1px dotted #000;
+    outline-offset:-4px
+}
+
+.header {
+    background-image: url("https://media.tumblr.com/b34bae63cf05e7c45dda695d04eab596/tumblr_inline_mp2cqolCK51qz4rgp.gif");
+    background-repeat: repeat-x;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    background-image: url("https://media.tumblr.com/c783168aaf1a7fe851cf8dc810ce6143/tumblr_inline_mp2cr3byv91qz4rgp.gif");
+    background-repeat: repeat-x;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    height: 50px;
+}
+
+.inner {
+    position: relative;
+}
+
+.inner-blue-poster {
+    background-image: url("http://media.tumblr.com/dff708034383b521d492ba272d59d655/tumblr_inline_misxpfaCEn1qz4rgp.gif");
+    background-size: auto;
+    background-repeat: repeat;
+    position: absolute;
+    top: 4em;
+    left: 0em;
+    z-index: 1;
+    width: 300px;
+    height: 800px;
+    border: #b4e3fb 20px solid;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+.inner-blue-poster #photobooth {
+    z-index: 10;
+    position: absolute;
+    top: 9em;
+    left: 6em;
+    width: 130%;
+    rotate: -3deg;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    transition: transform 0.5s ease;    
+}
+
+.inner-blue-poster #photobooth {
+    cursor: pointer;
+}
+
+.inner-blue-poster #photobooth:hover {
+    transform: rotate(-5deg);
+}
+
+#photobooth-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#photobooth-overlay.active {
+    display: flex;
+}
+
+#photobooth-overlay img {
+    max-width: 85vw;
+    max-height: 85vh;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: photoboothZoomIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes photoboothZoomIn {
+    from { transform: scale(0.4) rotate(-3deg); opacity: 0; }
+    to   { transform: scale(1) rotate(0deg);   opacity: 1; }
+}
+
+.inner-blue-poster #clip {
+    z-index: 12;
+    position: absolute;
+    top: 8em;
+    left: 15em;
+    width: 130%;
+    rotate: -7deg;
+    width: 20%;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));    
+}
+
+#melody-1 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#kuromi-1 {
+    position: absolute;
+    bottom: 3em;
+    width: 100%;
+}
+
+#ribbon {
+    position: absolute;
+    top: 8em;
+    left: 0.5em;
+    z-index: 2;
+    width: 18%;
+}
+
+/* ------------------------------------- receiptify ------------------------------------- */
+.receiptify {
+    background-image:url('https://neocitiesimage.carrd.co/assets/images/image40.png?v=facd9e9b');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: 28em;
+    left: 20em;
+    rotate: 5deg;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+.receipt-inner {
+    width: 150px;
+    height: 150px;
+    margin-left: 97px;
+    margin-top: 50px;
+    font-family:'mkpop';
+    padding-right: 1px;
+}
+
+/* ------------------------------------- letter ------------------------------------- */
+.letter .letter-proper {
+    z-index: 6;
+    position: absolute;
+    top: 11em;
+    left: 35em;
+    width: 380px;
+}
+
+.letter #blueheart {
+    z-index: 3;
+    position: absolute;
+    width: 20%;
+    top: 4em;
+    left: 30em;
+}
+
+.letter #curlystamp {
+    z-index: 5;
+    position: absolute;
+    top: -1em;
+    width: 35%;
+    left: 28em;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+.letter #dividerblue {
+    position: absolute;
+    width: 20%;
+    z-index: 6;
+    top: 10em;
+    left: 34em;
+}
+
+.letter #pixel-1 {
+    position: absolute;
+    width: 50px;
+    z-index: 6;
+    top: 22em;
+    left: 34em;
+}
+
+.letter #pixel-2 {
+    position: absolute;
+    width: 50px;
+    z-index: 6;
+    top: 9em;
+    right: 45em;
+}
+
+
+#hachikaawa {
+    z-index: 3;
+    position: absolute;
+    width: 10%;
+    right: 4em;
+    top: 21em;
+    rotate: -3deg;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+
+
+/* ------------------------------------- ipod player ------------------------------------- */
+.ipod-container {
+    position: absolute;
+    right: 4em;
+    bottom: 4em;
+    rotate: -2deg;
+}
+
+.ipod {
+  background: #ececec;
+  width: 240px;
+  height: 360px;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: inset 5px 0px 15px 10px #00000090;
+  filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+.ipod .screen {
+  background: #fff;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 15px;
+  transform: translate(-50%, 0);
+  width: 200px;
+  height: 160px;
+  border-radius: 8px;
+  border: 2px solid #aaa;
+  box-shadow: inset 0 0 0px 2px #222;
+}
+
+.ipod .controls {
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  bottom: 25px;
+  transform: translate(-50%, 0);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 0.5px solid #ccc;
+  box-shadow: inset 0px 0px 5px 1px #00000050;
+}
+
+.ipod .controls:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ececec;
+  box-shadow: inset 24px 24px 48px #c6c6c6, inset -24px -24px 48px #ffffff;
+  border: 0.5px solid #ccc;
+}
+
+.ipod .controls .fa-fast-backward {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(0, -50%);
+  color: #aaa;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.ipod .controls .fa-fast-backward:active {
+  color: #888;
+}
+
+.ipod .controls .fa-fast-forward {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(0, -50%);
+  color: #aaa;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.ipod .controls .fa-fast-forward:active {
+  color: #888;
+}
+
+.ipod .controls .menu {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translate(-50%, 0);
+  color: #aaa;
+  font-size: 0.9em;
+  font-weight: 700;
+  border: 0;
+  outline: 0;
+  background: none;
+  cursor: default; /* Keeps the menu button but disables interaction */
+}
+
+.ipod .controls .menu:active {
+  color: #888;
+}
+
+.ipod .controls .play-pause-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: 0;
+  outline: 0;
+  background: none;
+  color: #aaa;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.ipod .controls .play-pause-btn:active {
+  color: #888;
+}
+
+.ipod .screen .music {
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.ipod .screen .music img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  -webkit-box-reflect: below 2px
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.09));
+}
+
+.ipod .screen .music .content .name {
+  font-size: 0.95em;
+}
+
+.ipod .screen .music .content .singer {
+  font-size: 0.55em;
+  font-family: "myriad";
+}
+
+.ipod .screen .music .content .date {
+  font-size: 0.85em;
+  font-weight: 700;
+}
+
+.ipod .screen .bar-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85em;
+  width: 100%;
+  position: absolute;
+  bottom: 30px;
+}
+
+.ipod .screen .bar-box .bar {
+  width: 80px;
+  height: 10px;
+  font-family: "myriad";
+  border: 1px solid #aaa;
+}
+
+.ipod .screen .bar-box .bar .progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #f2f6f8 0%,
+    #d8e1e7 50%,
+    #b5c6d0 51%,
+    #e0eff9 100%
+  );
+}
