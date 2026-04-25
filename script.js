@@ -397,3 +397,14 @@ window.addEventListener("load", () => {
         saveStrip();
     });
 });
+
+function applyScale() {
+    const scale = Math.min(
+        window.innerWidth / 1680,
+        window.innerHeight / 865
+    );
+    document.body.style.zoom = scale;
+}
+
+applyScale();
+window.addEventListener('resize', applyScale);
