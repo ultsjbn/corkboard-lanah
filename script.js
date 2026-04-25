@@ -258,7 +258,7 @@ window.addEventListener("load", () => {
             if (zoomedEl) return; // if zoomed in not draggable
             if (e.button !== 0) return;
             e.stopPropagation();
-            dragE = el;
+            dragEl = el;
             dragMoved = false;
             dragStartX = e.clientX;
             dragStartY = e.clientY;
