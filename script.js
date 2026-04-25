@@ -220,7 +220,7 @@ window.addEventListener("load", () => {
         ctrl.addEventListener("click", e => e.stopPropagation());
     });
 
-    // drag-to-move system
+    // dragging system
     let dragEl = null, dragStartX, dragStartY, dragStartL, dragStartT, dragMoved;
 
     document.addEventListener("mousemove", (e) => {
@@ -239,7 +239,7 @@ window.addEventListener("load", () => {
         dragEl.style.transition = "";
         dragEl.style.zIndex = dragEl._savedZIndex || "";
         if (dragMoved) {
-            // block the next click so zoom / camera handlers don't fire after a drag
+            // block the next click
             dragEl.addEventListener("click", e => e.stopPropagation(), { capture: true, once: true });
         }
         dragEl = null;
@@ -247,11 +247,11 @@ window.addEventListener("load", () => {
 
     const makeDraggable = (el) => {
         el.addEventListener("mousedown", (e) => {
-            if (zoomedEl) return;       // don't drag while zoomed in
+            if (zoomedEl) return; // if zoomed in not draggable
             if (e.button !== 0) return;
             e.stopPropagation();
-            dragEl     = el;
-            dragMoved  = false;
+            dragE = el;
+            dragMoved = false;
             dragStartX = e.clientX;
             dragStartY = e.clientY;
             dragStartL = el.offsetLeft;
@@ -341,9 +341,8 @@ window.addEventListener("load", () => {
         polaroid.appendChild(img);
         photoGallery.insertBefore(polaroid, stripSaveBtn);
 
-        // cap at 5 photos, oldest removed first
         const shots = photoGallery.querySelectorAll(".board-polaroid");
-        if (shots.length > 5) shots[0].remove();
+        if (shots.length > 4) shots[0].remove();
 
         stripSaveBtn.style.display = "block";
     };
