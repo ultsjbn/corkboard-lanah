@@ -131,6 +131,10 @@ music.addEventListener("timeupdate", (event) => {
 music.addEventListener("ended", nextSong);
 
 window.addEventListener("load", () => {
+    const loader = document.querySelector("#loader");
+    loader.classList.add("done");
+    loader.addEventListener("transitionend", () => loader.remove(), { once: true });
+
     loadSongs(songs[songIndex]);
     playAudio();
 
@@ -141,6 +145,10 @@ window.addEventListener("load", () => {
     let zoomedElParent = null; // stacking-context ancestor that needs elevating
 
     const zoomIn = (el) => {
+        // re-enable transition in case the drag system disabled it
+        el.style.transition = "";
+        void el.offsetWidth; // force reflow so the transition is active before we set transform
+
         const rect = el.getBoundingClientRect();
         const vpW = window.innerWidth;
         const vpH = window.innerHeight;
@@ -342,7 +350,7 @@ window.addEventListener("load", () => {
         photoGallery.insertBefore(polaroid, stripSaveBtn);
 
         const shots = photoGallery.querySelectorAll(".board-polaroid");
-        if (shots.length > 4) shots[0].remove();
+        if (shots.length > 3) shots[0].remove();
 
         stripSaveBtn.style.display = "block";
     };
