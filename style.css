@@ -12,6 +12,10 @@
     color: #1d3a5c;
 }
 
+* {
+    cursor: url('https://cdn.cursors-4u.net/previews/light-pink-pointer-586da373-32.webp') 40 37, auto !important;
+}
+
 body {
     background-image: url("https://neocitiesimage.carrd.co/assets/images/image34.jpg");
     background-attachment: fixed;
@@ -21,6 +25,10 @@ body {
 }
 
 p {
+    font-family:'mkpop';
+}
+
+li {
     font-family:'mkpop';
 }
 
@@ -58,11 +66,12 @@ p {
     background-image: url("https://media.tumblr.com/b34bae63cf05e7c45dda695d04eab596/tumblr_inline_mp2cqolCK51qz4rgp.gif");
     background-repeat: repeat-x;
     position: fixed;
-    top: 0;
+    top: -1em;
     left: 0;
-    z-index: 10;
+    z-index: 99;
     width: 100%;
     height: 100%;
+    pointer-events: none;
 }
 
 .footer {
@@ -74,6 +83,7 @@ p {
     z-index: 50;
     width: 100%;
     height: 50px;
+    pointer-events: none;
 }
 
 .inner {
@@ -85,13 +95,18 @@ p {
     background-size: auto;
     background-repeat: repeat;
     position: absolute;
-    top: 4em;
+    top: 3em;
     left: 0em;
     z-index: 1;
     width: 300px;
     height: 800px;
     border: #b4e3fb 20px solid;
     filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease-in-out;
+}
+
+.inner-blue-poster:hover {
+    transform: rotate(-3deg);
 }
 
 .inner-blue-poster #photobooth {
@@ -102,7 +117,7 @@ p {
     width: 130%;
     rotate: -3deg;
     filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
-    transition: transform 0.5s ease;    
+    transition: transform 0.3s ease-in-out;    
 }
 
 .inner-blue-poster #photobooth {
@@ -110,7 +125,7 @@ p {
 }
 
 .inner-blue-poster #photobooth:hover {
-    transform: rotate(-5deg);
+    transform: rotate(5deg);
 }
 
 #photobooth-overlay {
@@ -140,35 +155,184 @@ p {
     to   { transform: scale(1) rotate(0deg);   opacity: 1; }
 }
 
+/* ------------------------------------- camera embedded viewfinder ------------------------------------- */
+
+/* live feed fills the camera's LCD screen area */
+#camera-feed {
+    z-index: 0;
+    position: absolute;
+    top: 12.5rem;
+    left: 7rem;
+    width: 45%;
+    height: 34.5%;
+    object-fit: cover;
+    border-radius: 3px;
+    transform: scaleX(-1);
+    display: none;
+}
+
+#camera-hint {
+    position: absolute;
+    top: 12.5rem;
+    left: 7rem;
+    width: 45%;
+    height: 34.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'mkpop';
+    font-size: 18px;
+    color: #1f1f1f;
+    pointer-events: none;
+    border-radius: 3px;
+    background: rgb(255, 194, 223);
+    text-align: center;
+}
+
+#camera-screen-flash {
+    position: absolute;
+    top: 12.5rem;
+    left: 7rem;
+    width: 45%;
+    height: 34.5%;
+    background: white;
+    border-radius: 3px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease-out;
+}
+
+#camera-screen-flash.flash {
+    opacity: 1;
+    transition: none;
+}
+
+#camera-shutter {
+    position: absolute;
+    top: 16.2rem;
+    left: 25.55rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #d4afc0;
+    cursor: url('https://cdn.cursors-4u.net/previews/light-pink-pointer-586da373-32.webp') 40 37, auto !important;
+    display: none;
+    z-index: 11;
+    transition: background 0.15s, transform 0.1s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+#camera-shutter:hover {
+    background: #f6bcde;
+}
+
+#camera-shutter:active {
+    transform: scale(0.88);
+}
+
+.camera.on #camera-feed    { display: block; }
+.camera.on #camera-hint    { display: none; }
+.camera.on #camera-shutter { display: block; }
+
+#camera-photo-gallery {
+    position: absolute;
+    left: 6rem;
+    top: 30rem;
+    z-index: 60;
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.board-polaroid {
+    background: #fff;
+    padding: 5px 5px 22px 5px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    width: 90px;
+    animation: polaroidDrop 0.4s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+}
+
+.board-polaroid img {
+    width: 100%;
+    height: 68px;
+    object-fit: cover;
+    display: block;
+}
+
+.board-polaroid:nth-child(odd)  { transform: rotate(-3deg); }
+.board-polaroid:nth-child(even) { transform: rotate(2deg); }
+
+@keyframes polaroidDrop {
+    from { opacity: 0; transform: scale(0.5) rotate(-8deg) translateY(-20px); }
+    to   { opacity: 1; }
+}
+
+#strip-save-btn {
+    font-family: 'mkpop';
+    background: #f6bcde;
+    color: #1d3a5c;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    display: none;
+    cursor: url('https://cdn.cursors-4u.net/previews/light-pink-pointer-586da373-32.webp') 40 37, auto !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: filter 0.15s;
+}
+
+#strip-save-btn:hover { filter: brightness(0.9); }
+
+.camera {
+    cursor: url('https://cdn.cursors-4u.net/previews/light-pink-pointer-586da373-32.webp') 40 37, auto !important;
+}
+
 .inner-blue-poster #clip {
     z-index: 12;
     position: absolute;
     top: 8em;
     left: 15em;
-    width: 130%;
     rotate: -7deg;
     width: 20%;
-    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));    
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    transition: 0.3s ease-in-out;    
+}
+
+.inner-blue-poster #clip:hover {
+    transform: rotate(3deg);
 }
 
 #melody-1 {
     position: absolute;
-    top: 0;
+    top: -1em;
     width: 100%;
 }
 
 #kuromi-1 {
     position: absolute;
-    bottom: 3em;
+    bottom: 1em;
     width: 100%;
 }
 
-#ribbon {
+#polaroid {
+    z-index: 9;
     position: absolute;
-    top: 8em;
-    left: 0.5em;
-    z-index: 2;
-    width: 18%;
+    top: 15rem;
+    left: -4rem;
+    width: 110%;
+    rotate: -15deg;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    transition: 0.3s ease-in-out; 
+}
+
+.washi {
+    z-index: 11;
+    position: absolute;
+    top: 13rem;
+    left: 1rem;
+    width: 45%;
+    rotate: -15deg;
 }
 
 /* ------------------------------------- receiptify ------------------------------------- */
@@ -180,9 +344,14 @@ p {
     height: 350px;
     position: absolute;
     top: 28em;
-    left: 20em;
+    left: 21em;
     rotate: 5deg;
     filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease-in-out; 
+}
+
+.receiptify:hover {
+    transform: rotate(-5deg);
 }
 
 .receipt-inner {
@@ -194,59 +363,187 @@ p {
     padding-right: 1px;
 }
 
-/* ------------------------------------- letter ------------------------------------- */
-.letter .letter-proper {
-    z-index: 6;
+#tape {
     position: absolute;
-    top: 11em;
-    left: 35em;
-    width: 380px;
+    z-index: 8;
+    top: 1em;
+    left: 8em;
+    width: 100px;
 }
 
-.letter #blueheart {
-    z-index: 3;
+/* ------------------------------------- uno reverse ------------------------------------- */
+.uno-reverse {
     position: absolute;
-    width: 20%;
-    top: 4em;
-    left: 30em;
-}
-
-.letter #curlystamp {
-    z-index: 5;
-    position: absolute;
-    top: -1em;
-    width: 35%;
-    left: 28em;
+    top: 10rem;
+    left: 20rem;
+    z-index: 0;
+    width: 10%;
+    rotate: 5deg;
+    transition: 0.3s ease-in-out;
     filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
 }
 
-.letter #dividerblue {
+.uno-reverse:hover {
+    transform: rotate(5deg);
+}
+
+/* ------------------------------------- chiikawa keychain ------------------------------------- */
+.chiikawa-keychain {
+    z-index: 40;
     position: absolute;
-    width: 20%;
-    z-index: 6;
+    top: 1rem;
+    right: 23rem;
+    width: 25%;
+    transition: 0.3s ease-in-out;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+.chiikawa-keychain:hover {
+    transform: rotate(3deg);
+}
+
+/* ------------------------------------- camera ------------------------------------- */
+.camera {
+    z-index: 10;
+    position: absolute;
+    top: 23rem;
+    left: 36rem;
+    width: 550px;
+    height: 550px; /* image is 945×945 (1:1); needed so % positioning on children resolves correctly */
+    transition: 0.3s ease-in-out;
+}
+
+.camera #camera-gallery {
+    width: 100%;
+    display: block;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+/* ------------------------------------- patches ------------------------------------- */
+#a-patch {
+    position: absolute;
+    z-index: 8;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    top: 19rem;
+    left: 38rem;
+    width: 18%;
+    rotate: 10deg;
+    transition: 0.3s ease-in-out;
+}
+
+#a-patch:hover{
+    transform: rotate(3deg);
+}
+
+#b-patch {
+    position: absolute;
+    z-index: 8;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    top: 19rem;
+    left: 48rem;
+    width: 18%;
+    rotate: -10deg;
+}
+
+#b-patch:hover{
+    transform: rotate(3deg);
+}
+
+#heart-clip {
+    position: absolute;
+    z-index: 5;
+    top: 28rem;
+    right: 23rem;
+    width: 10%;
+}
+
+/* ------------------------------------- bracelet ------------------------------------- */
+#bracelet {
+    position: absolute;
+    z-index: 7;
+    top: 13rem;
+    right: 12rem;
+    width: 18%;
+    rotate: 8deg;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease-in-out; 
+}
+
+#bracelet:hover {
+    transform: rotate(2deg);
+}
+
+/* ------------------------------------- sticker ------------------------------------- */
+#sticker-1 {
+    position: absolute;
+    z-index: 10;
+    top: 10rem;
+    right: 21rem;
+    width: 8%;
+    rotate: -40deg;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease-in-out;
+}
+
+
+/* ------------------------------------- letter ------------------------------------- */
+.letter {
+    position: absolute;
+    top: -1em;
+    left: 28em;
+    width: 35%;
+    z-index: 5;
+}
+
+.letter #blueheart {
+    position: absolute;
+    z-index: 1;
+    width: 60%;
+    top: 5em;
+    left: 1em;
+}
+
+.letter-card {
+    position: relative;
+    z-index: 2;
+    background-image: url("img/curlystamp.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 35em;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+.letter-card #dividerpink {
+    position: absolute;
+    width: 55%;
+    top: 11em;
+    left: 6.5em;
+}
+
+.letter-card #pixel-1 {
+    position: absolute;
+    width: 40px;
+    top: 23em;
+    left: 6em;
+}
+
+.letter-card #pixel-2 {
+    position: absolute;
+    width: 40px;
     top: 10em;
-    left: 34em;
+    left: 28em;
 }
 
-.letter #pixel-1 {
+.letter-card .letter-proper {
     position: absolute;
-    width: 50px;
-    z-index: 6;
-    top: 22em;
-    left: 34em;
+    top: 12em;
+    left: 6.8em;
+    width: 25rem;
 }
-
-.letter #pixel-2 {
-    position: absolute;
-    width: 50px;
-    z-index: 6;
-    top: 9em;
-    right: 45em;
-}
-
 
 #hachikaawa {
-    z-index: 3;
+    z-index: 15;
     position: absolute;
     width: 10%;
     right: 4em;
@@ -256,13 +553,13 @@ p {
 }
 
 
-
 /* ------------------------------------- ipod player ------------------------------------- */
 .ipod-container {
     position: absolute;
     right: 4em;
     bottom: 4em;
     rotate: -2deg;
+    z-index: 10;
 }
 
 .ipod {
@@ -393,12 +690,12 @@ p {
     linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.09));
 }
 
-.ipod .screen .music .content .name {
+.ipod .screen .music .content .month {
   font-size: 0.95em;
 }
 
-.ipod .screen .music .content .singer {
-  font-size: 0.55em;
+.ipod .screen .music .content .songtitle {
+  font-size: 0.7em;
   font-family: "myriad";
 }
 
@@ -435,4 +732,137 @@ p {
     #b5c6d0 51%,
     #e0eff9 100%
   );
+}
+
+.right-side #kuromi-2 {
+    position: absolute;
+    z-index: 8;
+    width: 50px;
+    right: 2em;
+    top: 9em;
+}
+
+.right-side .note-1 {
+    background-image: url("https://www.milk-tea.email/assets/items/fusc53.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 2;
+    top: 10em;
+    right: 2em;
+    width: 20em;
+    height: 11em;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    rotate: 2deg;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.right-side .note-1:hover {
+    transform: rotate(2deg);
+}
+
+.note-1 #dawg-1 {
+    position: absolute;
+    z-index: 3;
+    top: 2.8em;
+    right: 3em;
+    width: 70%;
+}
+
+.right-side .note-2 {
+    background-image: url("https://www.milk-tea.email/assets/items/me06g.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 1;
+    bottom: 5em;
+    right: 15em;
+    width: 20em;
+    height: 11em;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
+    rotate: -2deg;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.right-side .note-2:hover {
+    transform: rotate(2deg);
+}
+
+.note-2 ul {
+    position: absolute;
+    z-index: 2;
+    bottom: -4em;
+    right: -2em;
+    width: 20em;
+    height: 11em;
+    line-height: 20px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.note-2 ul li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.note-2 ul li input[type="checkbox"] {
+    cursor: pointer;
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+.note-2 ul li label {
+    cursor: pointer;
+}
+
+.note-2 ul li input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+}
+
+.yellow-pin {
+    position: absolute;
+    z-index: 8;
+    width: 30px;
+    bottom: 14em;
+    right: 26em;
+}
+
+.list {
+    list-style-image: url("https://pameluft.neocities.org/images/bullet.gif");
+    list-style-type: disc;
+}
+
+/* ------------------------------------- decorations ------------------------------------- */
+#random-1 {
+    position: absolute;
+    z-index: 8;
+    width: 150px;
+    right: 22em;
+    top: 23em;
+}
+
+
+
+/* ------------------------------------- zoom system ------------------------------------- */
+#zoom-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 500;
+    cursor: pointer;
+}
+
+#zoom-overlay.active {
+    display: block;
+}
+
+.zoomable {
+    cursor: pointer;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                rotate 0.4s ease;
 }
